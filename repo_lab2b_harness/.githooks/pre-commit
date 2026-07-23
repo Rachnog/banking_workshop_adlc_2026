@@ -1,0 +1,26 @@
+#!/bin/sh
+# Commit guardrail: deterministic beats probabilistic.
+# Blocks commits that touch protected files — no matter who (or what) authored them.
+protected=".githooks/pre-commit
+.github/hooks/protect-files.json
+scripts/hooks/protect-files.sh
+src/domain/audit.ts
+data/blocklist.json
+tests/money.test.ts
+tests/payments.test.ts
+tests/accounts.test.ts"
+
+changed=$(git diff --cached --name-only --no-renames)
+blocked=0
+for p in $protected; do
+  if printf '%s\n' "$changed" | grep -qx "$p"; then
+    echo "BLOCKED by pre-commit hook: '$p' is a protected file." >&2
+    blocked=1
+  fi
+done
+if [ "$blocked" -eq 1 ]; then
+  echo "These files hold audit/ledger invariants and the seeded test contract." >&2
+  echo "If a change is truly needed, a HUMAN removes the protection consciously." >&2
+  exit 1
+fi
+exit 0

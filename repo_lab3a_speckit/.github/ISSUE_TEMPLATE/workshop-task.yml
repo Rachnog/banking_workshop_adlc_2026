@@ -1,0 +1,31 @@
+name: Workshop task (delegable unit)
+description: A well-specified task an agent (or colleague) can pick up cold.
+title: "[task]: "
+labels: ["workshop"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / intent
+      description: One paragraph in the Product Owner's words.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Numbered, observable behaviors with concrete values. Tests will be generated from these.
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: Files in scope
+    validations:
+      required: false
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+    validations:
+      required: false

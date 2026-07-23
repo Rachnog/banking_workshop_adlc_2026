@@ -1,0 +1,12 @@
+[
+  {
+    "id": "URGENT-REMIT",
+    "description": "Flag payments whose remittance info pressures for urgency (social-engineering pattern).",
+    "expression": "'$REMIT'.toUpperCase().includes('URGENT')"
+  },
+  {
+    "id": "ROUND-LARGE-USD",
+    "description": "Flag suspiciously round large USD amounts (>= 50,000.00 USD and ends in 000000 minor units).",
+    "expression": "currency === 'USD' && amountMinor >= 5000000 && amountMinor % 1000000 === 0"
+  }
+]

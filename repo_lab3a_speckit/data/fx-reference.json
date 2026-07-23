@@ -1,0 +1,13 @@
+{
+  "comment": "Fictional daily reference rates for the workshop. rate = VND per 1 major unit.",
+  "asOf": "2026-07-22",
+  "base": "VND",
+  "rates": {
+    "USD": 25400,
+    "EUR": 27100,
+    "GBP": 31900,
+    "SGD": 18700,
+    "HKD": 3250,
+    "JPY": 170
+  }
+}
